@@ -1,9 +1,16 @@
 import dataset
 from KNN import KNN
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import recall_score
 import os
-# scikit-learn套件僅用於計算準確率和召回率
+import numpy as np
+def accuracy_function(y_true, y_pred):
+    correct = np.sum(y_true == y_pred)
+    total = len(y_true)
+    return correct / total
+def recall_function(y_true, y_pred):
+    # 真陽/(真陽+假陰)
+    true_positives = np.sum((y_true == 1) & (y_pred == 1))  # 預測為1，實際為1
+    false_negatives = np.sum((y_true == 1) & (y_pred == 0))  # 預測為0，實際為1
+    return true_positives / (true_positives + false_negatives)
 def process_sigle_dataset(train_path, test_path):
     Train_DataSet = dataset.Dataset(train_path)
     Train_DataSet.Read_data()
@@ -24,8 +31,8 @@ def process_sigle_dataset(train_path, test_path):
     knn_model.fit(x_train, y_train)
     # 預測及評估
     y_prediction = knn_model.predict(x_test)
-    accuracy = accuracy_score(y_test, y_prediction)
-    recall = recall_score(y_test, y_prediction)
+    accuracy = accuracy_function(y_test, y_prediction)
+    recall = recall_function(y_test, y_prediction)
     #print(f"KNN 測試集準確率: {accuracy:.4f}")
     print("-" * 50)
     return accuracy, recall
