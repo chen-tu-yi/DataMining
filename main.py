@@ -11,15 +11,15 @@ def recall_function(y_true, y_pred):
     true_positives = np.sum((y_true == 1) & (y_pred == 1))  # 預測為1，實際為1
     false_negatives = np.sum((y_true == 1) & (y_pred == 0))  # 預測為0，實際為1
     return true_positives / (true_positives + false_negatives)
-def process_sigle_dataset(train_path, test_path):
+def process_sigle_dataset(train_path, test_path, missing_handle = True):
     Train_DataSet = dataset.Dataset(train_path)
     Train_DataSet.Read_data()
-    Train_DataSet.Process_data()
+    Train_DataSet.Process_data(missing_handle)
     x_train, y_train = Train_DataSet.get_Process_data()
 
     Test_DataSet = dataset.Dataset(test_path)
     Test_DataSet.Read_data()
-    Test_DataSet.Process_data()
+    Test_DataSet.Process_data(missing_handle)
     x_test, y_test = Test_DataSet.get_Process_data()
 
     # 交叉驗證
