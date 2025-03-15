@@ -10,10 +10,13 @@ class Dataset:
     def Read_data(self):
         self.data = pd.read_csv(self.path)
     def Process_data(self):
-        self.x = self.data.drop(columns=["Outcome"])
-        self.x = self.data.drop(columns=["SkinThickness", "Pregnancies"]) # feature selection
-        self.x = StandardScaler().fit_transform(self.x)
-        self.y = self.data["Outcome"]
+        self.x = self.data.drop(columns=["Outcome", "SkinThickness", "Pregnancies"])
+        self.y = self.data["Outcome"].to_numpy()
+        # 標準化
+        self.means = self.x.mean(axis=0)
+        self.stds = self.x.std(axis=0)
+        self.x = (self.x - self.means) / self.stds
+        self.x = self.x.to_numpy()
     def get_Process_data(self): #方便維護(ex. 變換)
         return self.x, self.y
 if __name__=="__main__": # test
