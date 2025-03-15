@@ -9,9 +9,14 @@ class Dataset:
         self.y = None
     def Read_data(self):
         self.data = pd.read_csv(self.path)
-    def Process_data(self):
-        self.x = self.data.drop(columns=["Outcome", "SkinThickness", "Pregnancies"])
+    def Process_data(self, missing_handle=True):
+        self.x = self.data.drop(columns=["Outcome"])
+        #self.x = self.data.drop(columns=["SkinThickness", "Pregnancies"]) #feature selection
         self.y = self.data["Outcome"].to_numpy()
+        if missing_handle:
+            for column in self.x.columns:
+                mean_val = self.x[column][self.x[column] > 0].mean() 
+                self.x[column] = self.x[column].replace(0, mean_val)
         # 標準化
         self.means = self.x.mean(axis=0)
         self.stds = self.x.std(axis=0)
