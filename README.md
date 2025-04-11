@@ -15,6 +15,6 @@
 2. 選擇K & C 值方法-**Cross Validation** -> 避免overfitting 或是 underfitting 提升model reliability
 3. SVM vs. KNN -> 差不多
 4. Missing handling -> 對缺失數據進行補齊 可提高準確/召回率
-5. Embedded feature selection -> 以random forest 訓練模型取得個特徵重要程度 用於驗證篩選哪兩個特徵
+5. Embedded feature selection -> 以random forest 訓練模型取得個特徵重要程度 用於驗證篩選哪兩個特徵 -> 選完後準確率可以提升到接近100% 這可以放在最後面
 
 *註：報告就照著主要實驗設計 <-> 圖表寫即可*
