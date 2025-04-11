@@ -17,4 +17,4 @@
 4. Missing handling -> 對缺失數據進行補齊 可提高準確/召回率
 5. Embedded feature selection -> 以random forest 訓練模型取得個特徵重要程度 用於驗證篩選哪兩個特徵
 
-<!-- 報告就照著主要實驗設計 <-> 圖表寫即可-->
+**註：*報告就照著主要實驗設計 <-> 圖表寫即可
