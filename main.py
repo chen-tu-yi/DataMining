@@ -26,7 +26,7 @@ def process_sigle_dataset(train_path, test_path, missing_handle = True):
     k_value = range(1,21,2)
     knn_model = KNN(5) # 預設
     best_k = knn_model.cross_validation_for_k(x_train, y_train, k_value, cv=5)
-    print(f"最佳 K 值: {best_k}")
+    #print(f"最佳 K 值: {best_k}")
     knn_model.k = best_k
     knn_model.fit(x_train, y_train)
     # 預測及評估
